@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HereU - Your Mind Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              // New Theme based on Logo
+              'primary-pink': '#D9AAB7', // A dusty rose
+              'secondary-peach': '#F5C6A5', // A soft peach
+              'accent-cream': '#FDF0D1', // A warm cream
+              'light-bg': '#FFFBF5',
+              'dark-bg': '#2C2A4A', // Deep eggplant
+              'dark-bg-card': '#4F4A7A',
+              // Onboarding & Initial Moods
+              'happy-yellow': '#FFD93D',
+              'calm-blue': '#6DD5FA',
+              'anxious-gray': '#CBD5E0',
+              'sad-blue': '#4A5568',
+              'energetic-orange': '#FF6B35',
+              // Expanded Mood Palette
+              'mood-loved': '#FBB6C1',
+              'mood-grateful': '#A7F3D0',
+              'mood-hopeful': '#93C5FD',
+              'mood-angry': '#F87171',
+              'mood-overwhelmed': '#A78BFA',
+              'mood-lonely': '#A5B4FC',
+              'mood-tired': '#9CA3AF',
+              // Time-based Backgrounds
+              'morning-start': '#FFECD6',
+              'morning-end': '#FFC2B4',
+              'day-start': '#89F7FE',
+              'day-end': '#66A6FF',
+              'evening-start': '#74EBD5',
+              'evening-end': '#ACB6E5',
+              'night-start': '#2C2A4A',
+              'night-end': '#4F4A7A',
+              // Wellness Rings (Updated)
+              'ring-sleep': '#B794F4',
+              'ring-mood': '#D9AAB7',
+              'ring-activity': '#F5C6A5',
+              // Chat UI Refresh (Not used with new theme)
+              'chat-bg-start': '#FDF0D1',
+              'chat-bg-end': '#FFFBF5',
+            },
+            fontFamily: {
+              headings: ['Poppins', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'slide-in': 'slide-in 0.3s ease-in-out',
+              'pulse-breathing': 'pulse-breathing 4s ease-in-out infinite',
+              'fade-in': 'fade-in 0.5s ease-in-out',
+              'slide-up': 'slide-up 0.5s ease-in-out forwards',
+              'lotus-breathing': 'lotus-breathing 5s ease-in-out infinite',
+              'ring-draw': 'ring-draw 1.5s 0.5s ease-out forwards',
+              'glow': 'glow 3s ease-in-out infinite',
+              'checkmark-draw': 'checkmark-draw 0.5s ease-in-out forwards',
+              'player-pulse': 'player-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+              'crisis-pulse': 'crisis-pulse 4s ease-in-out infinite',
+              'text-glow': 'text-glow 3s ease-in-out infinite',
+              'typewriter': 'typewriter 2s steps(40, end), blink-caret .75s step-end infinite',
+              'confetti-burst': 'confetti-burst 0.8s ease-out forwards',
+              'badge-unlock': 'badge-unlock 0.6s ease-in-out forwards',
+            },
+            keyframes: {
+              'slide-in': {
+                '0%': { transform: 'translateY(10px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              'pulse-breathing': {
+                '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+              },
+              'fade-in': {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              'slide-up': {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              'lotus-breathing': {
+                '0%, 100%': { transform: 'scale(1)', opacity: 0.8 },
+                '50%': { transform: 'scale(1.05)', opacity: 1 },
+              },
+              'ring-draw': {
+                'from': { 'stroke-dashoffset': '360' },
+                'to': { 'stroke-dashoffset': 'var(--ring-offset)' },
+              },
+              'glow': {
+                '0%, 100%': { 'box-shadow': '0 0 5px var(--glow-color), 0 0 10px var(--glow-color)' },
+                '50%': { 'box-shadow': '0 0 20px var(--glow-color), 0 0 30px var(--glow-color)' },
+              },
+              'checkmark-draw': {
+                'to': { 'stroke-dashoffset': '0' },
+              },
+              'player-pulse': {
+                '0%, 100%': {
+                  transform: 'scale(1)',
+                  boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.4)',
+                },
+                '70%': {
+                  transform: 'scale(1.05)',
+                  boxShadow: '0 0 0 20px rgba(255, 255, 255, 0)',
+                },
+              },
+              'crisis-pulse': {
+                '0%, 100%': { transform: 'scale(1)', opacity: 0.7 },
+                '50%': { transform: 'scale(1.05)', opacity: 1 },
+              },
+              'text-glow': {
+                '0%, 100%': { 'text-shadow': '0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5)' },
+                '50%': { 'text-shadow': '0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8)' },
+              },
+              'typewriter': {
+                'from': { width: '0' },
+                'to': { width: '100%' },
+              },
+              'blink-caret': {
+                'from, to': { 'border-color': 'transparent' },
+                '50%': { 'border-color': 'orange' },
+              },
+              'confetti-burst': {
+                '0%': { opacity: 1, transform: 'scale(0)' },
+                '50%': { opacity: 1, transform: 'scale(1.2)' },
+                '100%': { opacity: 0, transform: 'scale(2)' },
+              },
+              'badge-unlock': {
+                  '0%': { transform: 'scale(0.5) rotate(-15deg)', filter: 'brightness(1)' },
+                  '50%': { transform: 'scale(1.1) rotate(10deg)', filter: 'brightness(2)' },
+                  '100%': { transform: 'scale(1) rotate(0deg)', filter: 'brightness(1.2)' },
+              },
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
+  }
+}
+</script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
